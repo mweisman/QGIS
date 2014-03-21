@@ -58633,7 +58633,7 @@ Probléma volt a szimbólum adatbázisoddal.</translation>
     </message>
     <message>
         <location filename="../src/app/qgstipfactory.cpp" line="48"/>
-        <source>Become an QGIS translator</source>
+        <source>Become a QGIS translator</source>
         <translation>Legyél QGIS fordító</translation>
     </message>
     <message>

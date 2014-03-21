@@ -56730,7 +56730,7 @@ There was a problem with your symbol database.</source>
     </message>
     <message>
         <location filename="../src/app/qgstipfactory.cpp" line="48"/>
-        <source>Become an QGIS translator</source>
+        <source>Become a QGIS translator</source>
         <translation>Hakka QGIS-i tõlkijaks</translation>
     </message>
     <message>

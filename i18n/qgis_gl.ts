@@ -56329,7 +56329,7 @@ Houbo un problema coa base de datos de símbolos.</translation>
     </message>
     <message>
         <location filename="../src/app/qgstipfactory.cpp" line="48"/>
-        <source>Become an QGIS translator</source>
+        <source>Become a QGIS translator</source>
         <translation>Convírtase nun tradutor QGIS</translation>
     </message>
     <message>

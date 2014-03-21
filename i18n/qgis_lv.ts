@@ -47003,7 +47003,7 @@ There was a problem with your symbol database.</source>
         <translation>QGIS publikācijas</translation>
     </message>
     <message>
-        <source>Become an QGIS translator</source>
+        <source>Become a QGIS translator</source>
         <translation>Kļūsti par QGIS tulkotāju</translation>
     </message>
     <message>

@@ -49096,7 +49096,7 @@ Buvo klaidų su jūsų simbolių duombaze.</translation>
     </message>
     <message>
         <location filename="../src/app/qgstipfactory.cpp" line="48"/>
-        <source>Become an QGIS translator</source>
+        <source>Become a QGIS translator</source>
         <translation>Tapkite QGIS vertėju</translation>
     </message>
     <message>

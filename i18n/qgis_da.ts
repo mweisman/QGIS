@@ -54121,7 +54121,7 @@ Der var et problem med til din symboldatabase.</translation>
     </message>
     <message>
         <location filename="../src/app/qgstipfactory.cpp" line="48"/>
-        <source>Become an QGIS translator</source>
+        <source>Become a QGIS translator</source>
         <translation>Bliv en QGIS-oversætter</translation>
     </message>
     <message>

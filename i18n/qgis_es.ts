@@ -50502,7 +50502,7 @@ Hubo un problema con su base de datos de símbolos.</translation>
         <translation type="obsolete">Si escribe un artículo científico o cualquier otro tipo de artículo que mencione a QGIS nos gustaría incluir su trabajo en la &lt;a href=&quot;http://qgis.org/en/site/about/case_studies/index.html&quot;&gt;sección estudio de casos&lt;/a&gt; de la página web de Quantum GIS (http://http://qgis.org/en/site/about/case_studies/index.html).</translation>
     </message>
     <message>
-        <source>Become an QGIS translator</source>
+        <source>Become a QGIS translator</source>
         <translation>Convertirse en traductor de QGIS</translation>
     </message>
     <message>

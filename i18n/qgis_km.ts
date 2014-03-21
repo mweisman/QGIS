@@ -48154,7 +48154,7 @@ There was a problem with your symbol database.</source>
             </translation>
     </message>
     <message>
-        <source>Become an QGIS translator</source>
+        <source>Become a QGIS translator</source>
         <translation type="unfinished">
             </translation>
     </message>

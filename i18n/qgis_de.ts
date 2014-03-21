@@ -47362,7 +47362,7 @@ Es gab ein Problem mit Ihrer Symboldatenbank.</translation>
     </message>
     <message>
         <location filename="../src/app/qgstipfactory.cpp" line="48"/>
-        <source>Become an QGIS translator</source>
+        <source>Become a QGIS translator</source>
         <translation>Werden Sie QGIS-Übersetzer</translation>
     </message>
     <message>

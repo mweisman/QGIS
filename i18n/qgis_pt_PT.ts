@@ -59391,7 +59391,7 @@ Foi detectado um problema com a sua base de dados de símbolo.</translation>
     </message>
     <message>
         <location filename="../src/app/qgstipfactory.cpp" line="48"/>
-        <source>Become an QGIS translator</source>
+        <source>Become a QGIS translator</source>
         <translation>Torne-se um tradutor QGIS</translation>
     </message>
     <message>

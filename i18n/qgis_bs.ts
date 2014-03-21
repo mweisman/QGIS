@@ -52626,7 +52626,7 @@ Problem je sa vašom bazom podataka simbola.</translation>
     </message>
     <message>
         <location filename="../src/app/qgstipfactory.cpp" line="48"/>
-        <source>Become an QGIS translator</source>
+        <source>Become a QGIS translator</source>
         <translation>Postanite QGIS prevodilac</translation>
     </message>
     <message>

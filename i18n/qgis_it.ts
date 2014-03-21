@@ -54825,7 +54825,7 @@ C&apos;è stato un problema con il tuo database dei simboli.</translation>
     </message>
     <message>
         <location filename="../src/app/qgstipfactory.cpp" line="48"/>
-        <source>Become an QGIS translator</source>
+        <source>Become a QGIS translator</source>
         <translation>Diventa un traduttore di QGIS</translation>
     </message>
     <message>

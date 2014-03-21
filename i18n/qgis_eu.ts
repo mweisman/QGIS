@@ -50313,7 +50313,7 @@ Arazo bat dago zure ikurren datu-basearekin.</translation>
     </message>
     <message>
         <location filename="../src/app/qgstipfactory.cpp" line="48"/>
-        <source>Become an QGIS translator</source>
+        <source>Become a QGIS translator</source>
         <translation>Bihurtu QGISen itzultzailea</translation>
     </message>
     <message>

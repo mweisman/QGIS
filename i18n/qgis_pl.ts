@@ -58097,7 +58097,7 @@ Im niższy numer, tym wcześniej rysowana jest warstwa.</translation>
     </message>
     <message>
         <location filename="../src/app/qgstipfactory.cpp" line="48"/>
-        <source>Become an QGIS translator</source>
+        <source>Become a QGIS translator</source>
         <translation>Zostań tłumaczem QGIS</translation>
     </message>
     <message>

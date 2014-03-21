@@ -49433,7 +49433,7 @@ Er was een probleem met uw symbolen database.</translation>
         <translation type="obsolete">Als u een wetenschappelijk artikel of een ander stuk schrijft dat refereert aan QGIS, dan zouden we het prachtig vinden als u uw werk opneem in het &lt;a href=&quot;http://qgis.org/en/site/about/case_studies/index.html&quot;&gt;case studie deel&lt;/a&gt; van de Quantum GIS webpagina&apos;s (http://http://qgis.org/en/site/about/case_studies/index.html).</translation>
     </message>
     <message>
-        <source>Become an QGIS translator</source>
+        <source>Become a QGIS translator</source>
         <translation>Wordt een QGIS-vertaler</translation>
     </message>
     <message>
