@@ -1,0 +1,3 @@
+FILE(GLOB INSTALLER_FILES *.sld *.py)
+
+PLUGIN_INSTALL(opengeo test/resources ${INSTALLER_FILES})

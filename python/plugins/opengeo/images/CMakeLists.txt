@@ -1,0 +1,3 @@
+FILE(GLOB INSTALLER_FILES *.gif *.jpg *.png)
+
+PLUGIN_INSTALL(opengeo images ${INSTALLER_FILES})

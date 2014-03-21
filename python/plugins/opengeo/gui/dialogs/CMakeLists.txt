@@ -1,0 +1,3 @@
+FILE(GLOB INSTALLER_FILES *.py)
+
+PLUGIN_INSTALL(opengeo gui/dialogs ${INSTALLER_FILES})

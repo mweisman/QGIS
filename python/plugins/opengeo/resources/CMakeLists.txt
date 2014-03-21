@@ -1,0 +1,3 @@
+FILE(GLOB INSTALLER_FILES *.sld)
+
+PLUGIN_INSTALL(opengeo resources ${INSTALLER_FILES})
