@@ -11,6 +11,7 @@
 #include <qwt_legend.h>
 #include <qwt_legend_item.h>
 #include <qpainter.h>
+#include <qwt_scale_div.h>
 
 class QwtPolarItem::PrivateData
 {
