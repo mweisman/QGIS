@@ -53,7 +53,7 @@ class SagaUtils:
     
     #Harcoded installation paths relative to the QGIS path 
     SAGA_INSTALATION_PATH_WIN = os.path.join(os.path.dirname(QgsApplication.prefixPath()), 'saga')
-    SAGA_INSTALATION_PATH_OSX = '/Applications/QGIS.app/Contents/MacOS/saga'
+    SAGA_INSTALATION_PATH_OSX = os.path.join(os.path.dirname(QgsApplication.prefixPath()), 'saga')
 
     isSagaInstalled = False
 
