@@ -101,6 +101,8 @@ ENDFOREACH ()
 
 MESSAGE (STATUS "Copying grass...")
 EXECUTE_PROCESS (COMMAND cp -r "${GRASS_BUILD_PATH}" "${QLIBDIR}/../grass")
+EXECUTE_PROCESS (COMMAND mkdir "${QLIBDIR}/../share")
+EXECUTE_PROCESS (COMMAND cp -r "${BUILD_LIB_PATH}/../share/gdal" "${QLIBDIR}/../share/gdal")
 
 # re-link grass
 MESSAGE (STATUS "Re-linking grass libs...")

@@ -901,6 +901,12 @@ bool QgsApplication::createDB( QString *errorMessage )
   int myChangeFlag = 0; //whether we want to force the env var to change
   setenv( "GDAL_PAM_PROXY_DIR", myPamPath.toUtf8(), myChangeFlag );
 #endif
+                                                                                       
+#if defined(__APPLE__)
+  // Point GDAL_DATA at the gdal share directory embedded in the app bundle 
+  QString appRoot = applicationDirPath() + "/share/gdal";
+  setenv( "GDAL_DATA", appRoot.toUtf8().constData(), 1 );
+#endif
 
   // Check qgis.db and make private copy if necessary
   QFile qgisPrivateDbFile( QgsApplication::qgisUserDbFilePath() );
