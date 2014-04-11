@@ -99,6 +99,9 @@ FOREACH (build_file ${files})
   EXECUTE_PROCESS (COMMAND ditto "${build_file}" "${QLIBDIR}")
 ENDFOREACH ()
 
+# Unclear why this dylib does not get copied in above loop
+EXECUTE_PROCESS (COMMAND cp "${BUILD_LIB_PATH}/libgeos_c.1.dylib" "${QLIBDIR}")
+
 MESSAGE (STATUS "Copying grass...")
 EXECUTE_PROCESS (COMMAND cp -r "${GRASS_BUILD_PATH}" "${QLIBDIR}/../grass")
 EXECUTE_PROCESS (COMMAND mkdir "${QLIBDIR}/../share")
@@ -124,11 +127,18 @@ FOREACH (dir ${grass_dirs})
     STRING (COMPARE NOTEQUAL "${OLD_LIB_INSTALL_NAME}" "" result)
     IF (result)
         INSTALLNAMETOOL_SET_ID (${BUNDLE_ID} "${bundle_file}")
-        UPDATEQGISPATHS ("${OLD_LIB_INSTALL_NAME}" "${file_basename}")
         UPDATELOCALPATHS ("${OLD_LIB_INSTALL_NAME}" "${BUNDLE_ID}")
+        UPDATEQGISPATHS ("${OLD_LIB_INSTALL_NAME}" "../grass/lib/${file_basename}")
     ENDIF()
   ENDFOREACH()
 ENDFOREACH()
+
+# For some reason geos isn't getting re-linked. Force it here
+FILE (GLOB grass_libs "${QLIBDIR}/../grass/lib/*.dylib")
+FOREACH (lib ${grass_libs})
+  INSTALLNAMETOOL_CHANGE("/opt/qgis_deps/lib/libgeos.3.4.2.dylib" "@executable_path/lib/libgeos.3.4.2.dylib" "${lib}")
+  INSTALLNAMETOOL_CHANGE("/opt/qgis_deps/lib/libgeos_c.1.dylib" "@executable_path/lib/libgeos_c.1.dylib" "${lib}")
+ENDFOREACH ()
 
 FILE (GLOB_RECURSE files FOLLOW_SYMLINKS "${QLIBDIR}/*.dylib")
 FOREACH (file ${files})
