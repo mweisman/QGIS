@@ -45,14 +45,7 @@ class GrassAlgorithmProvider(AlgorithmProvider):
         self.createAlgsList()  # Preloading algorithms to speed up
 
     def initializeSettings(self):
-        AlgorithmProvider.initializeSettings(self)
-        if isWindows() or isMac():
-            ProcessingConfig.addSetting(Setting(self.getDescription(),
-                    GrassUtils.GRASS_FOLDER, 'GRASS folder',
-                    GrassUtils.grassPath()))
-            ProcessingConfig.addSetting(Setting(self.getDescription(),
-                    GrassUtils.GRASS_WIN_SHELL, 'Msys folder',
-                    GrassUtils.grassWinShell()))
+        AlgorithmProvider.initializeSettings(self)        
         ProcessingConfig.addSetting(Setting(self.getDescription(),
                                     GrassUtils.GRASS_LOG_COMMANDS,
                                     'Log execution commands', False))
@@ -62,9 +55,6 @@ class GrassAlgorithmProvider(AlgorithmProvider):
 
     def unload(self):
         AlgorithmProvider.unload(self)
-        if isWindows() or isMac():
-            ProcessingConfig.removeSetting(GrassUtils.GRASS_FOLDER)
-            ProcessingConfig.removeSetting(GrassUtils.GRASS_WIN_SHELL)
         ProcessingConfig.removeSetting(GrassUtils.GRASS_LOG_COMMANDS)
         ProcessingConfig.removeSetting(GrassUtils.GRASS_LOG_CONSOLE)
 

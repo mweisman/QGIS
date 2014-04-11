@@ -25,7 +25,6 @@ __copyright__ = '(C) 2012, Victor Olaya'
 
 __revision__ = '$Format:%H$'
 
-import os
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from processing.core.AlgorithmProvider import AlgorithmProvider
@@ -45,13 +44,9 @@ class SagaAlgorithmProvider(AlgorithmProvider):
 
     def initializeSettings(self):
         AlgorithmProvider.initializeSettings(self)
-        if isWindows():
-            ProcessingConfig.addSetting(Setting(self.getDescription(),
-                    SagaUtils.SAGA_FOLDER, 'SAGA folder',
-                    SagaUtils.sagaPath()))
         ProcessingConfig.addSetting(Setting(self.getDescription(),
                                     SagaUtils.SAGA_208,
-                                    'Enable SAGA 2.0.8 compatibility', True))
+                                    'Use SAGA 2.0.8 isntead of 2.1.0', not isMac()))
         ProcessingConfig.addSetting(Setting(self.getDescription(),
                                     SagaUtils.SAGA_IMPORT_EXPORT_OPTIMIZATION,
                                     'Enable SAGA Import/Export optimizations',
@@ -83,9 +78,6 @@ class SagaAlgorithmProvider(AlgorithmProvider):
 
     def unload(self):
         AlgorithmProvider.unload(self)
-        if isWindows():
-            ProcessingConfig.removeSetting(SagaUtils.SAGA_FOLDER)
-
         ProcessingConfig.removeSetting(SagaUtils.SAGA_AUTO_RESAMPLING)
         ProcessingConfig.removeSetting(SagaUtils.SAGA_RESAMPLING_REGION_XMIN)
         ProcessingConfig.removeSetting(SagaUtils.SAGA_RESAMPLING_REGION_YMIN)

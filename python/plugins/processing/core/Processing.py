@@ -48,7 +48,6 @@ from processing.modeler.ModelerOnlyAlgorithmProvider import \
         ModelerOnlyAlgorithmProvider
 from processing.algs.QGISAlgorithmProvider import QGISAlgorithmProvider
 from processing.grass.GrassAlgorithmProvider import GrassAlgorithmProvider
-from processing.grass7.Grass7AlgorithmProvider import Grass7AlgorithmProvider
 from processing.lidar.LidarToolsAlgorithmProvider import \
         LidarToolsAlgorithmProvider
 from processing.gdal.GdalOgrAlgorithmProvider import GdalOgrAlgorithmProvider
@@ -146,8 +145,7 @@ class Processing:
         Processing.addProvider(OTBAlgorithmProvider())
         Processing.addProvider(RAlgorithmProvider())
         Processing.addProvider(SagaAlgorithmProvider())
-        Processing.addProvider(GrassAlgorithmProvider())
-        Processing.addProvider(Grass7AlgorithmProvider())
+        Processing.addProvider(GrassAlgorithmProvider())        
         Processing.addProvider(ScriptAlgorithmProvider())
         Processing.addProvider(TauDEMAlgorithmProvider())
         Processing.addProvider(AdminToolsAlgorithmProvider())

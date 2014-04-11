@@ -197,12 +197,6 @@ class SagaAlgorithm(GeoAlgorithm):
                 self.inputExtentsCount += 1
 
     def processAlgorithm(self, progress):
-        if isWindows():
-            path = SagaUtils.sagaPath()
-            if path == '':
-                raise GeoAlgorithmExecutionException(
-                        'SAGA folder is not configured.\nPlease configure \
-                        it before running SAGA algorithms.')
         commands = list()
         self.exportedLayers = {}
 
