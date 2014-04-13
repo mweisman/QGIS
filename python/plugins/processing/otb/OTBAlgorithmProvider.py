@@ -73,13 +73,10 @@ class OTBAlgorithmProvider(AlgorithmProvider):
 
 
     def initializeSettings(self):
-        AlgorithmProvider.initializeSettings(self)
-        ProcessingConfig.addSetting(Setting(self.getDescription(), OTBUtils.OTB_FOLDER, "OTB command line tools folder", OTBUtils.otbPath()))
-        ProcessingConfig.addSetting(Setting(self.getDescription(), OTBUtils.OTB_LIB_FOLDER, "OTB applications folder", OTBUtils.otbLibPath()))
+        AlgorithmProvider.initializeSettings(self)        
         ProcessingConfig.addSetting(Setting(self.getDescription(), OTBUtils.OTB_SRTM_FOLDER, "SRTM tiles folder", OTBUtils.otbSRTMPath()))
         ProcessingConfig.addSetting(Setting(self.getDescription(), OTBUtils.OTB_GEOID_FILE, "Geoid file", OTBUtils.otbGeoidPath()))
 
     def unload(self):
         AlgorithmProvider.unload(self)
-        ProcessingConfig.removeSetting(OTBUtils.OTB_FOLDER)
-        ProcessingConfig.removeSetting(OTBUtils.OTB_LIB_FOLDER)
+
