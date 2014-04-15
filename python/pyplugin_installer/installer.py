@@ -484,6 +484,9 @@ class QgsPluginInstaller(QObject):
     if settings.value(reposName+"/url", "", type=unicode) == officialRepo[1]:
       QMessageBox.warning(iface.mainWindow(), self.tr("QGIS Python Plugin Installer"), self.tr("You can't remove the official QGIS Plugin Repository. You can disable it if needed."))
       return
+    if settings.value(reposName+"/url", "", type=unicode) == boundlessRepo[1]:
+      QMessageBox.warning(iface.mainWindow(), self.tr("QGIS Python Plugin Installer"), self.tr("You can't remove the Boundless Plugin Repository. You can disable it if needed."))
+      return      
     warning = self.tr("Are you sure you want to remove the following repository?") + "\n" + reposName
     if QMessageBox.warning(iface.mainWindow(), self.tr("QGIS Python Plugin Installer"), warning , QMessageBox.Yes, QMessageBox.No) == QMessageBox.No:
       return
