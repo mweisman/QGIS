@@ -75,6 +75,14 @@ void QgsPythonUtilsImpl::initPython( QgisInterface* interface )
   runString( "os.environ['HOME']=os.environ['USERPROFILE']\n" );
 #endif
 
+#if defined(__APPLE__)
+  // Shapely needs some help finding geos when it's a moving target in a bundle
+  QString setPathPython = "os.environ['QGIS_PREFIX_PATH'] = ' ";
+  setPathPython.append(QCoreApplication::applicationDirPath().toUtf8().constData());
+  setPathPython.append("'");
+  runString(setPathPython);
+#endif
+
   // construct a list of plugin paths
   // plugin dirs passed in QGIS_PLUGINPATH env. variable have highest priority (usually empty)
   // locally installed plugins have priority over the system plugins
