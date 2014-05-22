@@ -27,7 +27,9 @@ __revision__ = '$Format:%H$'
 
 import os
 import subprocess
+import platform
 from PyQt4.QtCore import *
+from qgis.core import QgsApplication
 from processing.core.ProcessingLog import ProcessingLog
 
 try:
@@ -49,6 +51,11 @@ class GdalUtils:
         if not path.lower() in envval.lower().split(os.pathsep):
             envval += '%s%s' % (os.pathsep, path)
             os.putenv('PATH', envval)
+        # We need to give some extra hints to get things picked up on OS X
+        if platform.system() == 'Darwin':
+            envval += "%s%s" % (os.path.join(QgsApplication.prefixPath(), "bin"), os.pathsep)
+            os.environ['PATH'] = envval
+            os.environ['DYLD_LIBRARY_PATH'] = os.path.join(QgsApplication.prefixPath(), "lib")
         loglines = []
         loglines.append('GDAL execution console output')
         fused_command = ''.join(['%s ' % c for c in commands])

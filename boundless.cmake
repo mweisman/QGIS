@@ -52,6 +52,12 @@ FUNCTION (UPDATELOCALPATHS LIBFROM LIBTO)
             INSTALLNAMETOOL_CHANGE_NO_ERR(${LIBFROM} ${LIBTO} ${file})
         ENDFOREACH()
         
+        # Update the lib path for bins in /bin
+        FILE (GLOB files "${QLIBDIR}/../bin/*")
+        FOREACH (file ${files})
+            INSTALLNAMETOOL_CHANGE_NO_ERR(${LIBFROM} ${LIBTO} ${file})
+        ENDFOREACH()
+        
         # Update the lib path for dylibs in framework root
         FILE (GLOB files "${QFWDIR}/*.framework/*")
         FOREACH (file ${files})
@@ -101,6 +107,17 @@ ENDFOREACH ()
 
 # Unclear why this dylib does not get copied in above loop
 EXECUTE_PROCESS (COMMAND cp "${BUILD_LIB_PATH}/libgeos_c.1.dylib" "${QLIBDIR}")
+
+# Copy GDAL binaries for processing
+MESSAGE (STATUS "Copying gdal...")
+FILE (GLOB gdal_binaries "${BUILD_LIB_PATH}/../bin/gdal*")
+FOREACH (bin ${gdal_binaries})
+  EXECUTE_PROCESS (COMMAND ditto ${bin} "${QLIBDIR}/../bin")
+ENDFOREACH ()
+FILE (GLOB ogr_binaries "${BUILD_LIB_PATH}/../bin/ogr*")
+FOREACH (bin ${ogr_binaries})
+  EXECUTE_PROCESS (COMMAND ditto ${bin} "${QLIBDIR}/../bin")
+ENDFOREACH ()
 
 MESSAGE (STATUS "Copying grass...")
 EXECUTE_PROCESS (COMMAND cp -r "${GRASS_BUILD_PATH}" "${QLIBDIR}/../grass")
