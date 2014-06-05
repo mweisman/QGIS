@@ -458,7 +458,7 @@ class Repositories(QObject):
           if not qgisMaximumVersion: qgisMaximumVersion = qgisMinimumVersion[0] + ".99"
           #if compatible, add the plugin to the list
           if not pluginNodes.item(i).firstChildElement("disabled").text().strip().upper() in ["TRUE","YES"]:
-            if isCompatible(QGis.QGIS_VERSION, qgisMinimumVersion, qgisMaximumVersion) and not self.isBlackListed(plugin):
+            if isCompatible(QGis.QGIS_VERSION, qgisMinimumVersion, qgisMaximumVersion):
               #add the plugin to the cache
               plugins.addFromRepository(plugin)
         self.mRepositories[reposName]["state"] = 2
@@ -479,15 +479,6 @@ class Repositories(QObject):
       self.checkingDone.emit()
 
     reply.deleteLater()
-
-  def isBlackListed(self, plugin):
-    '''A check to see if the plugin has to be skipped to avoid overwriting the Boundless own version'''
-    if plugin["download_url"] == boundlessRepo[1]:
-      return False
-    #plugins in this list should be upgraded only from the Boundless repo, 
-    #so they should be listed if they come from a different repo
-    blacklist = ["processing"]    
-    return plugin['id'].lower() in blacklist
 
   # ----------------------------------------- #
   def inspectionFilter(self):
