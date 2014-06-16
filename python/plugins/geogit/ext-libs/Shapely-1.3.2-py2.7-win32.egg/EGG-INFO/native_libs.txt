@@ -1,0 +1,3 @@
+shapely/DLLs/geos.dll
+shapely/DLLs/geos_c.dll
+shapely/speedups/_speedups.pyd

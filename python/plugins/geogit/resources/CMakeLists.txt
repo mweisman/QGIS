@@ -1,0 +1,4 @@
+FILE(GLOB XML_FILES *.xml)
+FILE(GLOB QML_FILES *.qml)
+
+PLUGIN_INSTALL(geogit resources ${XML_FILES} ${QML_FILES})

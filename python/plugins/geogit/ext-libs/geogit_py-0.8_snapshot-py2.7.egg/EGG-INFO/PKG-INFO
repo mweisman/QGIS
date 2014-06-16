@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: geogit-py
+Version: 0.8-SNAPSHOT
+Summary: Python bindings for GeoGit
+Home-page: https://github.com/boundlessgeo/geogit-py
+Author: Victor Olaya
+Author-email: volaya@boundlessgeo.com
+License: BSD
+Description: ./README.rst
+Keywords: geogit
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha

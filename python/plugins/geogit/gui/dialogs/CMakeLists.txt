@@ -1,0 +1,4 @@
+FILE(GLOB INSTALLER_FILES *.py)
+
+PLUGIN_INSTALL(geogit gui/dialogs ${INSTALLER_FILES})
+

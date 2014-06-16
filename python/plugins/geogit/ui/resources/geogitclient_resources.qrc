@@ -1,0 +1,32 @@
+<RCC>
+  <qresource prefix="/icon">
+    <file>octocat_mini.png</file>
+    <file>octocat.png</file>
+    <file>ujo-16.png</file>
+    <file>ujo-24.png</file>
+    <file>merge-24.png</file>
+    <file>zoom-extent.png</file>
+    <file>clone.png</file>
+    <file>search.png</file>
+    <file>error.png</file>
+    <file>add-repo.png</file>
+    <file>importExport-repo.png</file>
+    <file>sync-repo.png</file>
+    <file>config.png</file>
+    <file>commit-repo.png</file>
+    <file>pull-repo.png</file>
+    <file>push-repo.png</file>
+    <file>zoom-layerExtent.png</file>
+    <file>diff-selected.png</file>
+    <file>view-map.png</file>
+    <file>diff-details.png</file>
+    <file>create-repo.png</file>
+    <file>swap.png</file>
+    <file>create-and-import-repo.png</file>
+    <file>geogit-logo-24.png</file>
+    <file>add-repo-16.png</file>
+    <file>original-commit.png</file>
+    <file>new-commit.png</file>
+    <file>undock-panel.png</file>
+  </qresource>
+</RCC>

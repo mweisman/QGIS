@@ -1,0 +1,4 @@
+Shapely>=1.2.9
+py4j>=0.8
+geojson>=1.0.5
+requests>=2.2.1
