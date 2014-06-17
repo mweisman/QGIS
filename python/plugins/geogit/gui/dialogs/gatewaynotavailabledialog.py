@@ -1,7 +1,19 @@
 from PyQt4 import QtGui, QtCore
+from geogitpy import geogit
+from geogitpy.geogitexception import GeoGitException
+from geogitpy.py4jconnector import _connect
+import subprocess
+from geogit.gui.pyqtconnectordecorator import geogitPath
 import os
+from geogit import config
+from py4j.java_gateway import JavaGateway
+import logging
 import webbrowser
 
+_logger = logging.getLogger("geogitpy")
+
+okIcon = os.path.dirname(__file__) + "/../../ui/resources/ok.png"
+notOkIcon = os.path.dirname(__file__) + "/../../ui/resources/notok.gif"
 errorIcon = os.path.dirname(__file__) + "/../../ui/resources/error.png"
     
 class GatewayNotAvailableDialog(QtGui.QDialog):
@@ -10,6 +22,7 @@ class GatewayNotAvailableDialog(QtGui.QDialog):
         super(GatewayNotAvailableDialog, self).__init__(parent)        
         self.initGui()
 
+        
     def initGui(self):                         
         layout = QtGui.QVBoxLayout()                                
         buttonBox = QtGui.QDialogButtonBox(QtGui.QDialogButtonBox.Close)

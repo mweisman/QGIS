@@ -5,7 +5,7 @@ from PyQt4.QtCore import *
 from qgis.core import *
 
 def userFolder():
-    userDir = QFileInfo(QgsApplication.qgisUserDbFilePath()).path() + '/qgis-ujo'
+    userDir = QFileInfo(QgsApplication.qgisUserDbFilePath()).path() + '/qgis-geogit'
     if not QDir(userDir).exists():
         QDir().mkpath(userDir)
 

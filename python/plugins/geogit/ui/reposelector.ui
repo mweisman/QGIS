@@ -34,23 +34,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="newUjoRepoButton">
-       <property name="text">
-        <string>New Ujo Repo</string>
-       </property>
-       <property name="icon">
-        <iconset resource="resources/geogitclient_resources.qrc">
-         <normaloff>:/icon/ujo-24.png</normaloff>:/icon/ujo-24.png</iconset>
-       </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonTextBesideIcon</enum>
-       </property>
-       <property name="autoRaise">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -63,13 +46,6 @@
        </property>
       </spacer>
      </item>
-     <item>
-      <widget class="QLabel" name="loggedAsLabel">
-       <property name="text">
-        <string>Logged as XXX. Log out</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
    <item>
@@ -77,34 +53,11 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_3">
-         <property name="spacing">
-          <number>0</number>
+        <widget class="QLineEdit" name="filterBox">
+         <property name="placeholderText">
+          <string>[Enter text to filter repository list]</string>
          </property>
-         <item>
-          <widget class="QLineEdit" name="filterBox">
-           <property name="placeholderText">
-            <string>[Enter text to filter repository list]</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="advancedSearchButton">
-           <property name="maximumSize">
-            <size>
-             <width>50</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>...</string>
-           </property>
-           <property name="flat">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
+        </widget>
        </item>
        <item>
         <widget class="QTreeWidget" name="repoTree">

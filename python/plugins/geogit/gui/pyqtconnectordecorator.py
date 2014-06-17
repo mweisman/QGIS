@@ -3,6 +3,7 @@ import signal
 import logging
 import subprocess
 import time
+import sys
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from qgis.core import *
@@ -17,8 +18,11 @@ from py4j.protocol import Py4JNetworkError
 
 _logger = logging.getLogger("geogitpy")
    
-geogitPath = os.path.join(os.path.dirname(QgsApplication.qgisUserDbFilePath()), 
-                                "python", "plugins", "geogit", "apps" ,"geogit", "bin")
+def geogitPath():            
+    if sys.platform == 'darwin':
+        return os.path.join(QgsApplication.prefixPath(), 'bin', 'geogit' 'bin')            
+    else:
+        return os.path.join(os.path.dirname(QgsApplication.prefixPath()), 'geogit', 'bin')                            
 
 def geogitVersion():
     try:
@@ -72,19 +76,18 @@ class PyQtConnectorDecorator(Py4JCLIConnector):
             
                                            
     @staticmethod 
-    def clone(url, dest, username = None, password = None):            
+    def clone(url, dest, username = None, password = None):        
         commands = ['clone', url, dest]
         if username is not None and password is not None:
-            commands.extend(["--username", username, "--password", password])
+            commands.extend(["--username", username, "--password", password])                    
         port = config.getConfigValue(config.GENERAL, config.GATEWAY_PORT)
-        setGatewayPort(port)                                        
+        setGatewayPort(port)                        
         try:                                                                            
             execute(lambda: _runGateway(commands, os.path.dirname(__file__)), "Cloning")                                                          
         except Py4JConnectionException:            
             startGateway()
             execute(lambda: _runGateway(commands, os.path.dirname(__file__)), "Cloning")  
-            
-                
+
 _repos = {}
 
 def createRepository(url, init = False):
@@ -114,15 +117,15 @@ _proc = None
 def startGateway():
     global _proc
     _logger.debug("GeoGit gateway not started. Will try to start it")
-    if not os.path.exists(geogitPath):
-        _logger.debug("GeoGit path (%s) does not exist. Cannot start gateway" % geogitPath)
+    if not os.path.exists(geogitPath()):
+        _logger.debug("GeoGit path (%s) does not exist. Cannot start gateway" % geogitPath())
         return                 
     try:         
-        _logger.debug("Trying to start gateway at %s" % (geogitPath))   
+        _logger.debug("Trying to start gateway at %s" % (geogitPath()))   
         if os.name == 'nt':
-            _proc = subprocess.Popen([os.path.join(geogitPath , "geogit-gateway.bat")], shell = True)
+            _proc = subprocess.Popen([os.path.join(geogitPath() , "geogit-gateway.bat")], shell = True)
         else:
-            _proc = subprocess.Popen(os.path.join(geogitPath, "geogit-gateway"), stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+            _proc = subprocess.Popen(os.path.join(geogitPath(), "geogit-gateway"), stdout=subprocess.PIPE, stdin=subprocess.PIPE)
 
         time.sleep(3) #improve this and wait until the "server started" string is printed out                            
         port = config.getConfigValue(config.GENERAL, config.GATEWAY_PORT) 

@@ -43,7 +43,7 @@ class MapToolGeoGitInfo(QgsMapTool):
         try:
             feature = fit.next()
             for field in feature.fields().toList():
-                if field.name().lower == "id" or field.name().lower == "id":                                             
+                if field.name().lower() == "id" or field.name().lower() == "fid":                                             
                     fid =  unicode(feature[field.name()])
                     break                                                                             
         except StopIteration, e:          

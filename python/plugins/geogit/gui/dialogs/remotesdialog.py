@@ -78,7 +78,7 @@ class RemotesDialog(QtGui.QDialog):
             dlg.exec_()
             if dlg.name:
                 self.repo.removeremote(name)
-                self.repo.addremote(dlg.name, dlg.url, dlg.username, dlg.password)
+                self.repo.addremote(dlg.name, dlg.url)
                 del self.remotes[name]
                 self.remotes[dlg.name] = dlg.url 
                 self.setTableContent()
@@ -99,7 +99,7 @@ class RemotesDialog(QtGui.QDialog):
         dlg = NewRemoteDialog(parent = self)
         dlg.exec_()
         if dlg.name:
-            self.repo.addremote(dlg.name, dlg.url, dlg.username, dlg.password)
+            self.repo.addremote(dlg.name, dlg.url, None, None)
             self.remotes[dlg.name] = dlg.url 
             self.setTableContent()
             self.changed = True
@@ -134,26 +134,8 @@ class NewRemoteDialog(QtGui.QDialog):
         self.urlBox = QtGui.QLineEdit()        
         horizontalLayout.addWidget(urlLabel)
         horizontalLayout.addWidget(self.urlBox)
-        layout.addLayout(horizontalLayout)
+        layout.addLayout(horizontalLayout)               
         
-        horizontalLayout = QtGui.QHBoxLayout()
-        horizontalLayout.setSpacing(30)
-        horizontalLayout.setMargin(0)        
-        usernameLabel = QtGui.QLabel('Username')
-        self.usernameBox = QtGui.QLineEdit()        
-        horizontalLayout.addWidget(usernameLabel)
-        horizontalLayout.addWidget(self.usernameBox)
-        layout.addLayout(horizontalLayout) 
-        
-        horizontalLayout = QtGui.QHBoxLayout()
-        horizontalLayout.setSpacing(30)
-        horizontalLayout.setMargin(0)        
-        passwordLabel = QtGui.QLabel('Password')
-        self.passwordBox = QtGui.QLineEdit()        
-        horizontalLayout.addWidget(passwordLabel)
-        horizontalLayout.addWidget(self.passwordBox)
-        layout.addLayout(horizontalLayout) 
-                               
         layout.addWidget(buttonBox)
         self.setLayout(layout)
 
@@ -165,8 +147,6 @@ class NewRemoteDialog(QtGui.QDialog):
     def okPressed(self):
         self.name = unicode(self.nameBox.text())
         self.url = unicode(self.urlBox.text()) 
-        self.username = unicode(self.usernameBox.text())
-        self.password = unicode(self.password.text())
         self.close()
 
     def cancelPressed(self):

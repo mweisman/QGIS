@@ -856,7 +856,7 @@
        <item>
         <widget class="QCheckBox" name="addCheckBox">
          <property name="text">
-          <string>Add imported data (do not overwrite destination layer)</string>
+          <string>Add imported data (do not overwrite destination tree)</string>
          </property>
         </widget>
        </item>
@@ -865,7 +865,7 @@
          <item>
           <widget class="QLabel" name="label_2">
            <property name="text">
-            <string>Destination layer</string>
+            <string>Destination tree</string>
            </property>
           </widget>
          </item>
@@ -877,13 +877,6 @@
           </widget>
          </item>
         </layout>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="forceCheckBox">
-         <property name="text">
-          <string>Force import if imported data has a different attribute schema</string>
-         </property>
-        </widget>
        </item>
        <item>
         <spacer name="verticalSpacer_2">

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'reposelector.ui'
 #
-# Created: Tue Jun 10 10:58:54 2014
-#      by: PyQt4 UI code generator 4.11
+# Created: Mon Apr 14 13:59:37 2014
+#      by: PyQt4 UI code generator 4.9.6
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -39,36 +39,16 @@ class Ui_RepoSelectorDialog(object):
         self.addButton.setAutoRaise(True)
         self.addButton.setObjectName(_fromUtf8("addButton"))
         self.horizontalLayout.addWidget(self.addButton)
-        self.newUjoRepoButton = QtGui.QToolButton(RepoSelectorDialog)
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(_fromUtf8(":/icon/ujo-24.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.newUjoRepoButton.setIcon(icon1)
-        self.newUjoRepoButton.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
-        self.newUjoRepoButton.setAutoRaise(True)
-        self.newUjoRepoButton.setObjectName(_fromUtf8("newUjoRepoButton"))
-        self.horizontalLayout.addWidget(self.newUjoRepoButton)
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
-        self.loggedAsLabel = QtGui.QLabel(RepoSelectorDialog)
-        self.loggedAsLabel.setObjectName(_fromUtf8("loggedAsLabel"))
-        self.horizontalLayout.addWidget(self.loggedAsLabel)
         self.verticalLayout_5.addLayout(self.horizontalLayout)
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
         self.verticalLayout_3 = QtGui.QVBoxLayout()
         self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
-        self.horizontalLayout_3 = QtGui.QHBoxLayout()
-        self.horizontalLayout_3.setSpacing(0)
-        self.horizontalLayout_3.setObjectName(_fromUtf8("horizontalLayout_3"))
         self.filterBox = QtGui.QLineEdit(RepoSelectorDialog)
         self.filterBox.setObjectName(_fromUtf8("filterBox"))
-        self.horizontalLayout_3.addWidget(self.filterBox)
-        self.advancedSearchButton = QtGui.QPushButton(RepoSelectorDialog)
-        self.advancedSearchButton.setMaximumSize(QtCore.QSize(50, 16777215))
-        self.advancedSearchButton.setFlat(True)
-        self.advancedSearchButton.setObjectName(_fromUtf8("advancedSearchButton"))
-        self.horizontalLayout_3.addWidget(self.advancedSearchButton)
-        self.verticalLayout_3.addLayout(self.horizontalLayout_3)
+        self.verticalLayout_3.addWidget(self.filterBox)
         self.repoTree = QtGui.QTreeWidget(RepoSelectorDialog)
         self.repoTree.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.repoTree.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
@@ -94,9 +74,9 @@ class Ui_RepoSelectorDialog(object):
         sizePolicy.setHeightForWidth(self.openOrCloneRepoButton.sizePolicy().hasHeightForWidth())
         self.openOrCloneRepoButton.setSizePolicy(sizePolicy)
         self.openOrCloneRepoButton.setMinimumSize(QtCore.QSize(0, 30))
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(_fromUtf8(":/icon/push-repo.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.openOrCloneRepoButton.setIcon(icon2)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(_fromUtf8(":/icon/push-repo.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.openOrCloneRepoButton.setIcon(icon1)
         self.openOrCloneRepoButton.setIconSize(QtCore.QSize(32, 32))
         self.openOrCloneRepoButton.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
         self.openOrCloneRepoButton.setAutoRaise(False)
@@ -111,10 +91,7 @@ class Ui_RepoSelectorDialog(object):
     def retranslateUi(self, RepoSelectorDialog):
         RepoSelectorDialog.setWindowTitle(_translate("RepoSelectorDialog", "Select Repository", None))
         self.addButton.setText(_translate("RepoSelectorDialog", "Add Repo", None))
-        self.newUjoRepoButton.setText(_translate("RepoSelectorDialog", "New Ujo Repo", None))
-        self.loggedAsLabel.setText(_translate("RepoSelectorDialog", "Logged as XXX. Log out", None))
         self.filterBox.setPlaceholderText(_translate("RepoSelectorDialog", "[Enter text to filter repository list]", None))
-        self.advancedSearchButton.setText(_translate("RepoSelectorDialog", "...", None))
         self.openOrCloneRepoButton.setText(_translate("RepoSelectorDialog", "Open repository", None))
 
 import geogitclient_resources_rc
