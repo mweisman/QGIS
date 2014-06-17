@@ -17,6 +17,7 @@
 ***************************************************************************
 """
 
+
 __author__ = 'Victor Olaya'
 __date__ = 'August 2012'
 __copyright__ = '(C) 2012, Victor Olaya'
@@ -25,47 +26,62 @@ __copyright__ = '(C) 2012, Victor Olaya'
 
 __revision__ = '$Format:%H$'
 
-import pickle
-from processing.tools.system import *
 import os
-import codecs
+import re
+import json
+
+ALG_DESC = 'ALG_DESC'
+ALG_CREATOR = 'ALG_CREATOR'
+ALG_HELP_CREATOR = 'ALG_HELP_CREATOR'
+ALG_VERSION = 'ALG_VERSION'
+
+exps = [(r"\*(.*?)\*", r"<i>\1</i>"),
+        ("``(.*?)``", r'<FONT FACE="courier">\1</FONT>'),
+        ("(.*?)\n==+\n+?", r'<h2>\1</h2>'),
+        ("(.*?)\n--+\n+?", r'<h3>\1</h3>'),
+        (r"::(\s*\n(\s*\n)*((\s+).*?\n)(((\4).*?\n)|(\s*\n))*)",r"<pre>\1</pre>"),
+        ("\n+", "</p><p>")]
 
 
-class Help2Html:
+def getHtmlFromRstFile(rst):
+    if not os.path.exists(rst):
+        return None
+    with open(rst) as f:
+        lines = f.readlines()
+    s = "".join(lines)
+    for exp, replace in exps:
+        p = re.compile(exp)
+        s = p.sub(replace, s)
+    return s
 
-    ALG_DESC = 'ALG_DESC'
-    ALG_CREATOR = 'ALG_CREATOR'
-    ALG_HELP_CREATOR = 'ALG_HELP_CREATOR'
+def getHtmlFromHelpFile(alg, helpFile):
+    if not os.path.exists(helpFile):
+        return None
+    try:
+        with open(helpFile) as f:
+            descriptions = json.load(f)
+    except:
+        return None
+    s = '<html><body><h2>Algorithm description</h2>\n'
+    s += '<p>' + getDescription(ALG_DESC, descriptions) + '</p>\n'
+    s += '<h2>Input parameters</h2>\n'
+    for param in alg.parameters:
+        s += '<h3>' + param.description + '</h3>\n'
+        s += '<p>' + getDescription(param.name, descriptions) + '</p>\n'
+    s += '<h2>Outputs</h2>\n'
+    for out in alg.outputs:
+        s += '<h3>' + out.description + '</h3>\n'
+        s += '<p>' + getDescription(out.name, descriptions) + '</p>\n'
+    s += '<br>'
+    s += '<p align="right">Algorithm author: ' + getDescription(ALG_CREATOR, descriptions) + '</p>'
+    s += '<p align="right">Help author: ' + getDescription(ALG_HELP_CREATOR, descriptions) + '</p>'
+    s += '<p align="right">Algorithm version: ' + getDescription(ALG_VERSION, descriptions) + '</p>'
+    s += '</body></html>'
+    return s
 
-    def getHtmlFile(self, alg, helpFile):
-        if not os.path.exists(helpFile):
-            return None
-        self.alg = alg
-        f = open(helpFile, 'rb')
-        self.descriptions = pickle.load(f)
-        s = '<html><body><h2>Algorithm description</h2>\n'
-        s += '<p>' + self.getDescription(self.ALG_DESC) + '</p>\n'
-        s += '<h2>Input parameters</h2>\n'
-        for param in self.alg.parameters:
-            s += '<h3>' + param.description + '</h3>\n'
-            s += '<p>' + self.getDescription(param.name) + '</p>\n'
-        s += '<h2>Outputs</h2>\n'
-        for out in self.alg.outputs:
-            s += '<h3>' + out.description + '</h3>\n'
-            s += '<p>' + self.getDescription(out.name) + '</p>\n'
-        s += '<br>'
-        s += '<p align="right">Algorithm author: ' + self.getDescription(self.ALG_CREATOR) + '</p>'
-        s += '<p align="right">Help author: ' + self.getDescription(self.ALG_HELP_CREATOR) + '</p>'
-        s += '</body></html>'
-        filename = tempFolder() + os.sep + 'temphelp.html'
-        tempHtml = codecs.open(filename, 'w', encoding='utf-8')
-        tempHtml.write(s)
-        tempHtml.close()
+def getDescription(name, descriptions):
+    if name in descriptions:
+        return descriptions[name].replace("\n", "<br>")
+    else:
+        return ''
 
-        return filename
-
-    def getDescription(self, name):
-        if name in self.descriptions:
-            return self.descriptions[name].replace("\n", "<br>")
-        else:
-            return ''

@@ -31,7 +31,7 @@ from PyQt4 import QtCore, QtGui
 import os
 
 class MultipleFileInputDialog(QtGui.QDialog):
-    
+
     def __init__(self, selectedoptions):
         self.selectedoptions = selectedoptions
         self.options=selectedoptions
@@ -91,14 +91,14 @@ class MultipleFileInputDialog(QtGui.QDialog):
             path = lastfolder
         else :
             path = QtCore.QDir.currentPath()
-            
+
         filesOpened = QtGui.QFileDialog.getOpenFileNames( None, "Select the file(s) to use", path, "All files (*.*)" )
-        
+
         lastfile = ""
         for item in filesOpened:
             self.options.append( str(item) )
             lastfile=item
-            
+
         self.setTableContent()
         folder = os.path.dirname( str( lastfile ) )
         settings.setValue("processingFilesLastFolder", folder)

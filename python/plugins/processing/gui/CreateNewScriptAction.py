@@ -54,5 +54,8 @@ class CreateNewScriptAction(ToolboxAction):
             dlg = ScriptEditorDialog(ScriptEditorDialog.SCRIPT_R, None)
         dlg.show()
         dlg.exec_()
-        if dlg.update: 
-            self.toolbox.updateProvider('model')
+        if dlg.update:
+            if self.scriptType == self.SCRIPT_PYTHON:
+                self.toolbox.updateProvider('script')
+            elif self.scriptType == self.SCRIPT_R:
+                self.toolbox.updateProvider('r')

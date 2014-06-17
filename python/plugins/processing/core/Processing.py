@@ -30,7 +30,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from qgis.core import *
 import processing
-from processing import interface
+from qgis.utils import iface
 from processing.core.ProcessingConfig import ProcessingConfig
 from processing.core.GeoAlgorithm import GeoAlgorithm
 from processing.core.ProcessingLog import ProcessingLog
@@ -38,7 +38,7 @@ from processing.core.SilentProgress import SilentProgress
 from processing.gui.AlgorithmClassification import AlgorithmDecorator
 from processing.gui.MessageBarProgress import MessageBarProgress
 from processing.gui.RenderingStyles import RenderingStyles
-from processing.gui.Postprocessing import Postprocessing
+from processing.gui.Postprocessing import handleAlgorithmResults
 from processing.gui.UnthreadedAlgorithmExecutor import \
         UnthreadedAlgorithmExecutor
 from processing.modeler.Providers import Providers
@@ -46,18 +46,17 @@ from processing.modeler.ModelerAlgorithmProvider import \
         ModelerAlgorithmProvider
 from processing.modeler.ModelerOnlyAlgorithmProvider import \
         ModelerOnlyAlgorithmProvider
-from processing.algs.QGISAlgorithmProvider import QGISAlgorithmProvider
-from processing.grass.GrassAlgorithmProvider import GrassAlgorithmProvider
-from processing.lidar.LidarToolsAlgorithmProvider import \
+from processing.algs.qgis.QGISAlgorithmProvider import QGISAlgorithmProvider
+from processing.algs.grass.GrassAlgorithmProvider import GrassAlgorithmProvider
+from processing.algs.grass7.Grass7AlgorithmProvider import Grass7AlgorithmProvider
+from processing.algs.lidar.LidarToolsAlgorithmProvider import \
         LidarToolsAlgorithmProvider
-from processing.gdal.GdalOgrAlgorithmProvider import GdalOgrAlgorithmProvider
-from processing.otb.OTBAlgorithmProvider import OTBAlgorithmProvider
-from processing.r.RAlgorithmProvider import RAlgorithmProvider
-from processing.saga.SagaAlgorithmProvider import SagaAlgorithmProvider
+from processing.algs.gdal.GdalOgrAlgorithmProvider import GdalOgrAlgorithmProvider
+from processing.algs.otb.OTBAlgorithmProvider import OTBAlgorithmProvider
+from processing.algs.r.RAlgorithmProvider import RAlgorithmProvider
+from processing.algs.saga.SagaAlgorithmProvider import SagaAlgorithmProvider
 from processing.script.ScriptAlgorithmProvider import ScriptAlgorithmProvider
-from processing.taudem.TauDEMAlgorithmProvider import TauDEMAlgorithmProvider
-from processing.admintools.AdminToolsAlgorithmProvider import \
-        AdminToolsAlgorithmProvider
+from processing.algs.taudem.TauDEMAlgorithmProvider import TauDEMAlgorithmProvider
 from processing.tools import dataobjects
 
 
@@ -89,7 +88,7 @@ class Processing:
         try:
             provider.initializeSettings()
             Processing.providers.append(provider)
-            ProcessingConfig.loadSettings()
+            ProcessingConfig.readSettings()
             if updateList:
                 Processing.updateAlgsList()
         except:
@@ -109,7 +108,7 @@ class Processing:
         try:
             provider.unload()
             Processing.providers.remove(provider)
-            ProcessingConfig.loadSettings()
+            ProcessingConfig.readSettings()
             Processing.updateAlgsList()
         except:
             # This try catch block is here to avoid problems if the
@@ -127,13 +126,6 @@ class Processing:
                 return provider
         return Processing.modeler
 
-    @staticmethod
-    def getInterface():
-        return interface.iface
-
-    @staticmethod
-    def setInterface(iface):
-        pass
 
     @staticmethod
     def initialize():
@@ -145,17 +137,17 @@ class Processing:
         Processing.addProvider(OTBAlgorithmProvider())
         Processing.addProvider(RAlgorithmProvider())
         Processing.addProvider(SagaAlgorithmProvider())
-        Processing.addProvider(GrassAlgorithmProvider())        
+        Processing.addProvider(GrassAlgorithmProvider())
+        Processing.addProvider(Grass7AlgorithmProvider())
         Processing.addProvider(ScriptAlgorithmProvider())
         Processing.addProvider(TauDEMAlgorithmProvider())
-        Processing.addProvider(AdminToolsAlgorithmProvider())
         Processing.modeler.initializeSettings()
 
         # And initialize
         AlgorithmDecorator.loadClassification()
         ProcessingLog.startLogging()
         ProcessingConfig.initialize()
-        ProcessingConfig.loadSettings()
+        ProcessingConfig.readSettings()
         RenderingStyles.loadStyles()
         Processing.loadFromProviders()
 
@@ -283,8 +275,7 @@ class Processing:
 
     @staticmethod
     def runandload(name, *args):
-        Processing.runAlgorithm(name, Postprocessing.handleAlgorithmResults,
-                                *args)
+        Processing.runAlgorithm(name, handleAlgorithmResults, *args)
 
     @staticmethod
     def runAlgorithm(algOrName, onFinish, *args):
@@ -349,8 +340,8 @@ class Processing:
             QApplication.setOverrideCursor(QCursor(Qt.WaitCursor))
 
         progress = SilentProgress()
-        if interface.iface is not None :
-          progress = MessageBarProgress()
+        if iface is not None :
+            progress = MessageBarProgress()
         ret = UnthreadedAlgorithmExecutor.runalg(alg, progress)
         if onFinish is not None and ret:
             onFinish(alg, progress)
