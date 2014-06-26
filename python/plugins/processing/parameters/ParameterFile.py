@@ -30,9 +30,10 @@ from processing.parameters.Parameter import Parameter
 
 class ParameterFile(Parameter):
 
-    def __init__(self, name='', description='', isFolder=False, optional=True):
+    def __init__(self, name='', description='', isFolder=False, optional=True, ext = None):
         Parameter.__init__(self, name, description)
         self.value = None
+        self.ext = ext
         self.isFolder = isFolder
         self.optional = optional
 
@@ -46,9 +47,13 @@ class ParameterFile(Parameter):
 
     def setValue(self, obj):
         self.value = str(obj)
-        if self.value.strip() == '':
+        if self.value.strip() == '' or self.value is None:
             if not self.optional:
                 return False
+            else:
+                self.value = ''
+        if self.ext is not None and self.value != '':
+            return self.value.endswith(self.ext) 
         return True
 
     def deserialize(self, s):
