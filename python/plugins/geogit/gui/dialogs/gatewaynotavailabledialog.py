@@ -29,11 +29,9 @@ class GatewayNotAvailableDialog(QtGui.QDialog):
         class MyBrowser(QtGui.QTextBrowser):
             def loadResource(self, type_, name):                
                 return None        
-        self.textBrowser = MyBrowser()
-        self.textBrowser.connect(self.textBrowser, QtCore.SIGNAL("anchorClicked(const QUrl&)"), self.linkClicked)        
+        self.textBrowser = MyBrowser()    
         text = '"<html><img src="' + errorIcon + '"/><h3>Cannot connect to GeoGit.</h3>'
-        text += "<p>To connect to GeoGit, you must install GeoGit and have the GeoGit gateway running:</p>"
-        text += '<p>Click <a href = "help">here</a> to know more about how to install and run GeoGit</p></html>'        
+        text += "<p>To connect to GeoGit, you must install GeoGit and have the GeoGit gateway running:</p>"     
         self.textBrowser.setHtml(text)        
         layout.addWidget(self.textBrowser)        
         layout.addWidget(buttonBox)
@@ -43,8 +41,3 @@ class GatewayNotAvailableDialog(QtGui.QDialog):
         
         self.resize(500, 400)
         self.setWindowTitle("Error connecting to GeoGit")
-        
-    def linkClicked(self):
-        webbrowser.open_new_tab("http://ujo.com")  
-        self.close()
-        

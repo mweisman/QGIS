@@ -2,7 +2,7 @@
 name = GeoGit
 description = GeoGit client for QGIS
 category = Data management
-version = 0.1-20140617-472cf3d072121c6846daa0bc0e7e5e869e01e2e3
+version = 0.1-20140626-31058376ccfbd9d261a023eb01413214dca6ed74
 qgisMinimumVersion = 2.0
 author = Victor Olaya
 email = volaya@boundlessgeo.com
