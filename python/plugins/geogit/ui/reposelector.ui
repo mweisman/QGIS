@@ -19,7 +19,7 @@
      <item>
       <widget class="QToolButton" name="addButton">
        <property name="text">
-        <string>Add Repo</string>
+        <string>Add repository</string>
        </property>
        <property name="icon">
         <iconset resource="resources/geogitclient_resources.qrc">

@@ -78,7 +78,7 @@ class RemotesDialog(QtGui.QDialog):
             dlg.exec_()
             if dlg.name:
                 self.repo.removeremote(name)
-                self.repo.addremote(dlg.name, dlg.url)
+                self.repo.addremote(dlg.name, dlg.url, None, None)
                 del self.remotes[name]
                 self.remotes[dlg.name] = dlg.url 
                 self.setTableContent()

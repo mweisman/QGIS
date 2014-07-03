@@ -66,7 +66,7 @@ def exportFromGeoGitToTempFile(repo, ref, path):
     hasField = False
     fields = layer.pendingFields().toList()        
     for field in fields:
-        if field.name().lower() == "id":
+        if field.name().lower() == "id" or field.name().lower() == "fid":
             hasField = True
             break    
     

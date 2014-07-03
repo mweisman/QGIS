@@ -232,7 +232,8 @@ class RepoSelectorDialog(QtGui.QDialog):
                 self.ui.openOrCloneRepoButton.setEnabled(True)
                 self.ui.openOrCloneRepoButton.setIcon(gotoIcon)
                 self.ui.openOrCloneRepoButton.setText("Open repository") 
-                self.lastSelectedItem.setIcon(0, repoIcon)               
+                if self.lastSelectedItem is not None:
+                    self.lastSelectedItem.setIcon(0, repoIcon)               
             except InvalidRepoException:
                 desc = ("<p><b>LOCATION: </b>%s</p><p><b>No repository was found at this location."  % self.currentRepo.url  
                     + "\nIt might have been deleted</b></p>")  

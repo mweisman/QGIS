@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'addrepodialog.ui'
 #
-# Created: Wed Apr 02 10:42:47 2014
-#      by: PyQt4 UI code generator 4.9.6
+# Created: Thu Jul 03 11:29:40 2014
+#      by: PyQt4 UI code generator 4.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -215,18 +215,18 @@ class Ui_AddRepoDialog(object):
         QtCore.QMetaObject.connectSlotsByName(AddRepoDialog)
 
     def retranslateUi(self, AddRepoDialog):
-        AddRepoDialog.setWindowTitle(_translate("AddRepoDialog", "Add or Create a Repo", None))
-        self.addRepoLabel.setText(_translate("AddRepoDialog", "Add Existing Repo:", None))
+        AddRepoDialog.setWindowTitle(_translate("AddRepoDialog", "Add or create a repository", None))
+        self.addRepoLabel.setText(_translate("AddRepoDialog", "Add existing repository:", None))
         self.addRepoFolderBox.setPlaceholderText(_translate("AddRepoDialog", "Local or remote GeoGit repository location", None))
         self.selectRepoFolderButton.setText(_translate("AddRepoDialog", "...", None))
-        self.cloneCheckBox.setText(_translate("AddRepoDialog", "Clone repo locally to:", None))
+        self.cloneCheckBox.setText(_translate("AddRepoDialog", "Clone repository locally to:", None))
         self.selectCloneFolderButton.setText(_translate("AddRepoDialog", "...", None))
-        self.addRepoButton.setText(_translate("AddRepoDialog", "Add Repo", None))
+        self.addRepoButton.setText(_translate("AddRepoDialog", "Add repository", None))
         self.label.setText(_translate("AddRepoDialog", "OR", None))
-        self.label_6.setText(_translate("AddRepoDialog", "Create New Repo:", None))
+        self.label_6.setText(_translate("AddRepoDialog", "Create new repository:", None))
         self.createRepoFolderBox.setPlaceholderText(_translate("AddRepoDialog", "Enter a location for the new repo", None))
         self.selectNewRepoFolderButton.setText(_translate("AddRepoDialog", "...", None))
-        self.createRepoButton.setText(_translate("AddRepoDialog", "Create Repo", None))
+        self.createRepoButton.setText(_translate("AddRepoDialog", "Create repository", None))
         self.createRepoAndImportButton.setText(_translate("AddRepoDialog", "Create + Import", None))
 
 import geogitclient_resources_rc

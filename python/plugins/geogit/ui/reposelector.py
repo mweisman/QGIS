@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'reposelector.ui'
 #
-# Created: Mon Apr 14 13:59:37 2014
-#      by: PyQt4 UI code generator 4.9.6
+# Created: Thu Jul 03 11:29:43 2014
+#      by: PyQt4 UI code generator 4.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -90,7 +90,7 @@ class Ui_RepoSelectorDialog(object):
 
     def retranslateUi(self, RepoSelectorDialog):
         RepoSelectorDialog.setWindowTitle(_translate("RepoSelectorDialog", "Select Repository", None))
-        self.addButton.setText(_translate("RepoSelectorDialog", "Add Repo", None))
+        self.addButton.setText(_translate("RepoSelectorDialog", "Add repository", None))
         self.filterBox.setPlaceholderText(_translate("RepoSelectorDialog", "[Enter text to filter repository list]", None))
         self.openOrCloneRepoButton.setText(_translate("RepoSelectorDialog", "Open repository", None))
 

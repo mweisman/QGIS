@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'importexportdialog.ui'
 #
-# Created: Wed Feb 12 08:56:42 2014
-#      by: PyQt4 UI code generator 4.9.6
+# Created: Wed Jun 11 13:04:26 2014
+#      by: PyQt4 UI code generator 4.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -308,6 +308,9 @@ class Ui_ImportExportDialog(object):
         self.destTreeBox.setObjectName(_fromUtf8("destTreeBox"))
         self.horizontalLayout_25.addWidget(self.destTreeBox)
         self.verticalLayout_8.addLayout(self.horizontalLayout_25)
+        self.forceCheckBox = QtGui.QCheckBox(self.importTab)
+        self.forceCheckBox.setObjectName(_fromUtf8("forceCheckBox"))
+        self.verticalLayout_8.addWidget(self.forceCheckBox)
         spacerItem12 = QtGui.QSpacerItem(20, 5, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Fixed)
         self.verticalLayout_8.addItem(spacerItem12)
         self.line_3 = QtGui.QFrame(self.importTab)
@@ -726,9 +729,10 @@ class Ui_ImportExportDialog(object):
 "}", None))
         self.importListFeatureTypesButton.setText(_translate("ImportExportDialog", "List Feature Types", None))
         self.importTypeWidget.setTabText(self.importTypeWidget.indexOf(self.postgis), _translate("ImportExportDialog", "PostGIS", None))
-        self.addCheckBox.setText(_translate("ImportExportDialog", "Add imported data (do not overwrite destination tree)", None))
-        self.label_2.setText(_translate("ImportExportDialog", "Destination tree", None))
+        self.addCheckBox.setText(_translate("ImportExportDialog", "Add imported data (do not overwrite destination layer)", None))
+        self.label_2.setText(_translate("ImportExportDialog", "Destination layer", None))
         self.destTreeBox.setPlaceholderText(_translate("ImportExportDialog", "Leave empty to use origin name", None))
+        self.forceCheckBox.setText(_translate("ImportExportDialog", "Force import if imported data has a different attribute schema", None))
         self.line_3.setStyleSheet(_translate("ImportExportDialog", "#fileImportHelp {\n"
 "   color: blue;\n"
 "}", None))

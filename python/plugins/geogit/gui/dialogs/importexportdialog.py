@@ -124,11 +124,13 @@ class ImportExportDialog(QtGui.QDialog):
             settings.setValue("/GeoGit/LastImportOsmMappingPath", os.path.dirname(filename))            
     
     def importClicked(self):
+        addId = False
         def setProgress(i):
             self.ui.progressBarImport.setValue(i)
         self.ui.featureIdBox.setStyleSheet("QLineEdit{background: white}")                
         sourceType = self.ui.importTypeWidget.currentIndex()
         add = self.ui.addCheckBox.isChecked()
+        force = self.ui.forceCheckBox.isChecked()
         dest = self.ui.destTreeBox.text()                
         if sourceType == self.LAYER:               
             isPostGis = False
@@ -208,7 +210,7 @@ class ImportExportDialog(QtGui.QDialog):
                         else:
                             addId = True
                 exported = exportVectorLayer(layer, addId)                                                    
-                self.repo.importshp(exported, add, dest, idAttribute)                     
+                self.repo.importshp(exported, add, dest, idAttribute, force)                     
             if addId:
                 QtGui.QMessageBox.warning(self, "Warning", "A feature ID field has been added to the layer before importing.\n"
                                                                 "If you want to edit the data in the repo, do not edit the original\n"

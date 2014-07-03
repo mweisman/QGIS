@@ -20,7 +20,7 @@ _logger = logging.getLogger("geogitpy")
    
 def geogitPath():            
     if sys.platform == 'darwin':
-        return os.path.join(QgsApplication.prefixPath(), 'bin', 'geogit' 'bin')            
+        return os.path.join(QgsApplication.prefixPath(), 'bin', 'geogit', 'bin')            
     else:
         return os.path.join(os.path.dirname(QgsApplication.prefixPath()), 'geogit', 'bin')                            
 
@@ -59,7 +59,7 @@ class PyQtConnectorDecorator(Py4JCLIConnector):
         try:
             return self.runDecorated(lambda: Py4JCLIConnector.run(self, commands), self._getProgressMessage(commands))
         except Py4JConnectionException:            
-            startGateway()                        
+            startGateway()                      
             return self.runDecorated(lambda: Py4JCLIConnector.run(self, commands), self._getProgressMessage(commands))
         
     def runDecorated(self, func, progressMessage = None):                       
@@ -71,7 +71,7 @@ class PyQtConnectorDecorator(Py4JCLIConnector):
         try:
             self.runDecorated(lambda: Py4JCLIConnector.checkIsAlive(self))    
         except Py4JConnectionException:            
-            startGateway()                        
+            startGateway()                     
             self.runDecorated(lambda: Py4JCLIConnector.checkIsAlive(self))    
             
                                            
@@ -114,30 +114,33 @@ def removeFromRepositoryPool(url):
             
 _proc = None
 
-def startGateway():
-    global _proc
+def startGateway():    
     _logger.debug("GeoGit gateway not started. Will try to start it")
     if not os.path.exists(geogitPath()):
         _logger.debug("GeoGit path (%s) does not exist. Cannot start gateway" % geogitPath())
         return                 
-    try:         
+    try:                 
         _logger.debug("Trying to start gateway at %s" % (geogitPath()))   
-        if os.name == 'nt':
-            _proc = subprocess.Popen([os.path.join(geogitPath() , "geogit-gateway.bat")], shell = True)
-        else:
-            _proc = subprocess.Popen(os.path.join(geogitPath(), "geogit-gateway"), stdout=subprocess.PIPE, stdin=subprocess.PIPE)
-
-        time.sleep(3) #improve this and wait until the "server started" string is printed out                            
+        def _startGateway():
+            global _proc
+            if os.name == 'nt':
+                _proc = subprocess.Popen([os.path.join(geogitPath() , "geogit-gateway.bat")], shell = True)
+            else:
+                _proc = subprocess.Popen(os.path.join(geogitPath(), "geogit-gateway"), stdout=subprocess.PIPE, stdin=subprocess.PIPE)
+    
+            time.sleep(3) #improve this and wait until the "server started" string is printed out               
+        execute(_startGateway, "Starting gateway server")
         port = config.getConfigValue(config.GENERAL, config.GATEWAY_PORT) 
-        gateway = JavaGateway(GatewayClient(port = port))
+        gateway = JavaGateway(GatewayClient(port = int(port)))
         gateway.entry_point.isGeoGitServer()   
-        _logger.error("Gateway correctly started")                 
+        _logger.debug("Gateway correctly started")                 
     except Exception, e:
         _logger.error("Could not start gateway (%s)" % (str(e)))
+        global _proc
         _proc = None
         
 def killGateway():
-    global _proc            
+    global _proc
     if _proc is not None:
         _logger.debug("Killing gateway process")
         if os.name == 'nt':            
